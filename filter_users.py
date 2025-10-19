@@ -2,9 +2,6 @@ import json
 
 
 def filter_users_by_name(name):
-    with open("users.json", "r") as file:
-        users = json.load(file)
-
     filtered_users = [
         user for user in users if user["name"].lower() == name.lower()]
 
@@ -13,9 +10,6 @@ def filter_users_by_name(name):
 
 
 def filter_users_by_age(age):
-    with open("users.json", "r") as file:
-        users = json.load(file)
-
     filtered_users = [user for user in users if user["age"] == age]
 
     for user in filtered_users:
@@ -23,8 +17,12 @@ def filter_users_by_age(age):
 
 
 if __name__ == "__main__":
+    with open("users.json", "r") as file:
+        users = json.load(file)
+
     filter_option = input(
-        "What would you like to filter by? (Name or Age): ").strip().lower()
+        "What would you like to filter by? (Name or Age): "
+    ).strip().lower()
 
     if filter_option == "name":
         name_to_search = input("Enter a name to filter users: ").strip()
